@@ -27,28 +27,28 @@ public class Main {
         String text = readFile("C:\\Users\\Capt. Kirk\\IdeaProjects\\wordApp\\src\\rights.txt");
 //        System.out.println(text);
         String[] words = text.split("\\s+");
-        HashMap<String, Integer> uniqueMap = new HashMap<>();
+        HashMap<String, Integer> wordsFrequencyMap = new HashMap<>();
         for(int i = 0; i < words.length; i++) {
             String word = words[i].toLowerCase();
-            if(uniqueMap.get(word) == null) {
-                uniqueMap.put(word, 1);
+            if(wordsFrequencyMap.get(word) == null) {
+                wordsFrequencyMap.put(word, 1);
                 continue;
             }
-                uniqueMap.put(word, uniqueMap.get(word) + 1);
+                wordsFrequencyMap.put(word, wordsFrequencyMap.get(word) + 1);
         }
 
-        ArrayList<HashMap.Entry<String, Integer>> uniqueList = new ArrayList<>();
+        ArrayList<HashMap.Entry<String, Integer>> wordsFrequencyList = new ArrayList<>();
 
-        uniqueList.addAll(uniqueMap.entrySet());
+        wordsFrequencyList.addAll(wordsFrequencyMap.entrySet());
 
-        Collections.sort(uniqueList, new Comparator<HashMap.Entry<String, Integer>>() {
+        Collections.sort(wordsFrequencyList, new Comparator<HashMap.Entry<String, Integer>>() {
             public int compare(Map.Entry<String, Integer> o1, Map.Entry<String, Integer> o2) {
                 return o2.getValue() - o1.getValue();
             }
         });
         int frequentWordLimit = 51;
         int count = 1;
-        for (HashMap.Entry<String, Integer> wordEntry : uniqueList) {
+        for (HashMap.Entry<String, Integer> wordEntry : wordsFrequencyList) {
             if(count == frequentWordLimit) {
                 break;
             }
